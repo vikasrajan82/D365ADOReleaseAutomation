@@ -1,0 +1,41 @@
+        {
+            "id": "09d391ce-723c-4b8e-9f21-68837b65533f",
+            "name": "MSCRMCopy",
+            "friendlyName": "Deploy CRM",
+            "description": "Will Deploy CRM solutions to target environment",
+            "helpMarkDown": "",
+            "category": "Utility",
+            "author": "Vikas Rajan",
+            "version": {
+                 "Major": 0,
+                 "Minor": 1,
+                 "Patch": 16
+             },
+             "visibility": [ "Build", "Release" ],
+             "instanceNameFormat": "Applying Solution Upgrade: baseurl from AirTable",
+             "inputs": [
+                 {
+                     "name": "baseurl",
+                     "type": "string",
+                     "label": "Base URL",
+                     "defaultValue": "",
+                     "required": true,
+                     "helpMarkDown": "The base URL for the REST API call within AirTable"
+                 },
+                 {
+                     "name": "apikey",
+                     "type": "string",
+                     "label": "API Key",
+                     "inputMode": "passwordbox",
+                     "isConfidential": true,            
+                     "defaultValue": "",
+                     "required": true,
+                     "helpMarkDown": "AirTable API Key"
+                 }
+             ],
+             "execution": {
+                 "PowerShell3": {
+                     "target": "Print.ps1"
+                 }
+             }
+         }
