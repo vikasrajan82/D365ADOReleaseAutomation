@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "d365-buildreleasetask",
   "name": "D365 Automation Tools",
-  "version": "0.0.32",
+  "version": "0.0.40",
   "publisher": "VikasRajan",
   "targets": [
     {
@@ -14,7 +14,7 @@
     "Azure Pipelines"
   ],
   "tags": [
-    "Build & Release Task",
+    "Build \u0026 Release Task",
     "Dynamics 365 CE",
     "Dynamics CRM"
   ],
@@ -28,8 +28,8 @@
     "uri": "https://github.com/vikasrajan82/D365ADOReleaseAutomation"
   },
   "branding": {
-    "color": "rgb(0, 136, 113)",
-    "theme": "dark"
+    "color": "rgb(240,240,225)",
+    "theme": "light"
   },
   "icons": {
     "default": "ExtensionIcon.png"
@@ -41,7 +41,7 @@
   ],
   "contributions": [
     {
-      "id": "custom-build-release-task",
+      "id": "MSCRMCopy",
       "type": "ms.vss-distributed-task.task",
       "targets": [
         "ms.vss-distributed-task.tasks"
