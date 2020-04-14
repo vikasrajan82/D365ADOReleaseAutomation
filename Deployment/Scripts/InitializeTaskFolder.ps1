@@ -1,7 +1,6 @@
 ﻿# Create Package Directory
 
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
-Set-Location $ScriptDir\..\Release\bin
 
 Set-Location $ScriptDir\..\Release\Tasks
 
@@ -55,58 +54,11 @@ if ($TaskName.Length -gt 0)
         }
     ],
     "execution": {
-        "PowerShell": {
+        "PowerShell3": {
             "target": "print.ps1"
         }
     }
 }
 "@
-
-        $JSON | Set-Content -Path "./task.json"
-
-        $Publisher = "VikasRajan" 
-        $PublisherFriendly = "Vikas Rajan" 
-        $Description = "Build and Release Tools"
-        $Manifest = @"
-{
-   "manifestVersion":1,
-   "id":"build-release-task",
-   "name":"${PublisherFriendly} Build and Release Tools",
-   "version":"0.0.1",
-   "publisher":"$Publisher",
-   "targets":[
-      {
-         "id":"Microsoft.VisualStudio.Services"
-      }
-   ],
-   "description":"${Description}",
-   "categories":[
-      "Azure Pipelines"
-   ],
-   "tags":[
-      "release",
-      "build"
-   ],
-   "files":[
-      {
-         "path":"Tasks/$TaskName"
-      }
-   ],
-   "contributions":[
-      {
-         "id":"custom-build-release-task",
-         "type":"ms.vss-distributed-task.task",
-         "targets":[
-            "ms.vss-distributed-task.tasks"
-         ],
-         "properties":{
-            "name":"Tasks/$TaskName"
-         }
-      }
-   ]
-}
-"@
-
-    Set-Location ../.. 
-    $Manifest | Set-Content -Path "./vss-extension.json"
+    
 }

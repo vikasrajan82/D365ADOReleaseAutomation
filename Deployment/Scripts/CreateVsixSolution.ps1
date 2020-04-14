@@ -20,6 +20,7 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
 
    Copy-Item "$ReleaseDir\Docs\overview.md" $DeploymentDir -Force -Recurse
 
+   # Updating the VSS Extension file with the created tasks
    $vssExtensionMetadata = Get-Content -Raw -Path "$ReleaseDir\vss-extension.json" | ConvertFrom-Json
    $vssExtensionMetadata.files = @()
    $vssExtensionMetadata.contributions = @()
@@ -28,7 +29,13 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
 
    foreach($taskFolder in $taskFolders)
     {
-	    Copy-Item -Path "$ReleaseDir\Images\ExtensionTaskIcon.png" -Destination "$DeploymentDir\Tasks\$taskFolder"
+        # Incrementing the patch in Task.json file
+        $taskJson = Get-Content -Raw -Path "$ReleaseDir\Tasks\$taskFolder\task.json" | ConvertFrom-Json
+        $taskJson.version.Patch = $taskJson.version.Patch + 1
+        $taskJson | ConvertTo-Json -depth 100 | Set-Content "$ReleaseDir\Tasks\$taskFolder\task.json"
+        Copy-Item "$ReleaseDir\Tasks\$taskFolder\task.json" "$DeploymentDir\Tasks\$taskFolder" -Force -Recurse
+
+	    Copy-Item -Path "$ReleaseDir\Images\icon.png" -Destination "$DeploymentDir\Tasks\$taskFolder"
 	    New-Item "$DeploymentDir\Tasks\$taskFolder\ps_modules\VstsTaskSdk" -ItemType directory
 	    Copy-Item -Path "$ReleaseDir\Packages\VstsTaskSdk\0.11.0\*.*" -Destination "$DeploymentDir\Tasks\$taskFolder\ps_modules\VstsTaskSdk"
 
@@ -38,6 +45,7 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
         $vssExtensionMetadata.contributions += @('{"id": "' + $taskFolder + '", "type": "ms.vss-distributed-task.task", "targets": ["ms.vss-distributed-task.tasks"],"properties": {"name": "Tasks/' + $taskFolder + '"}}' | ConvertFrom-Json)
     }
 
+    # Writing the content to extension file
     $vssExtensionMetadata | ConvertTo-Json -depth 100 | Set-Content "$ReleaseDir\vss-extension.json"
     Copy-Item "$ReleaseDir\vss-extension.json" $DeploymentDir -Force -Recurse
 
