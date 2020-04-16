@@ -1,7 +1,7 @@
 {
     "id":  "4419f6b5-8aa8-4b5b-8e63-c403b44f5aa5",
     "name":  "D365_ImportSolutionByConfig",
-    "friendlyName":  "Import Solution from Configuration xml",
+    "friendlyName":  "Import Solution using configuration file",
     "description":  "Imports solution as per sequence specified in the configuration xml.",
     "helpMarkDown":  "",
     "category":  "Build",
@@ -9,13 +9,13 @@
     "version":  {
                     "Major":  0,
                     "Minor":  1,
-                    "Patch":  12
+                    "Patch":  45
                 },
     "visibility":  [
                        "Build",
                        "Release"
                    ],
-    "instanceNameFormat":  "Import Solution from Configuration xml",
+    "instanceNameFormat":  "Import Solution using configuration file",
     "inputs":  [
                    {
                        "name":  "connectionstring",
@@ -32,6 +32,14 @@
                        "defaultValue":  "",
                        "required":  true,
                        "helpMarkDown":  "Absolute path to the configuration file"
+                   },
+                   {
+                       "name":  "enabletracing",
+                       "type":  "boolean",
+                       "label":  "Enable Tracing",
+                       "defaultValue":  false,
+                       "required":  true,
+                       "helpMarkDown":  "Indicates if tracing has to be enabled"
                    }
                ],
     "execution":  {

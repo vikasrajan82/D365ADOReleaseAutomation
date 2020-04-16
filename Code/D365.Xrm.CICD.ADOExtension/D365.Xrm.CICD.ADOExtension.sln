@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Xrm.CICD.ADOExtension.Library", "D365.Xrm.CICD.ADOExtension.Library\D365.Xrm.CICD.ADOExtension.Library.csproj", "{C18BBB28-C7EF-44DE-9399-C3A2622A0945}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Xrm.CICD.SolutionCustomization", "D365.Xrm.CICD.SolutionCustomization\D365.Xrm.CICD.SolutionCustomization.csproj", "{FF832F7A-D86D-4E3F-9B58-15CC0921D9C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{166A2D97-4F57-4B21-8147-9D5BD298107B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C18BBB28-C7EF-44DE-9399-C3A2622A0945}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C18BBB28-C7EF-44DE-9399-C3A2622A0945}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C18BBB28-C7EF-44DE-9399-C3A2622A0945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF832F7A-D86D-4E3F-9B58-15CC0921D9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF832F7A-D86D-4E3F-9B58-15CC0921D9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF832F7A-D86D-4E3F-9B58-15CC0921D9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF832F7A-D86D-4E3F-9B58-15CC0921D9C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{166A2D97-4F57-4B21-8147-9D5BD298107B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166A2D97-4F57-4B21-8147-9D5BD298107B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166A2D97-4F57-4B21-8147-9D5BD298107B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166A2D97-4F57-4B21-8147-9D5BD298107B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

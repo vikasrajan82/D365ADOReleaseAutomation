@@ -35,6 +35,18 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
         $taskJson | ConvertTo-Json -depth 100 | Set-Content "$ReleaseDir\Tasks\$taskFolder\task.json"
         Copy-Item "$ReleaseDir\Tasks\$taskFolder\task.json" "$DeploymentDir\Tasks\$taskFolder" -Force -Recurse
 
+        # Copying the bin folder
+         Switch ($taskFolder)
+        {
+            "D365_ImportSolutionByConfig" 
+            { 
+                Copy-Item "$ReleaseDir\..\..\Code\D365.Xrm.CICD.ADOExtension\D365.Xrm.CICD.SolutionCustomization\bin\Debug" "$DeploymentDir\Tasks\$taskFolder\bin" -Force -Recurse
+                break;
+            }
+        }
+
+        Copy-Item -Path "$ReleaseDir\Packages\node_modules" -Destination "$DeploymentDir\Tasks\$taskFolder\node_modules" -Force -Recurse
+
 	    Copy-Item -Path "$ReleaseDir\Images\icon.png" -Destination "$DeploymentDir\Tasks\$taskFolder"
 	    New-Item "$DeploymentDir\Tasks\$taskFolder\ps_modules\VstsTaskSdk" -ItemType directory
 	    Copy-Item -Path "$ReleaseDir\Packages\VstsTaskSdk\0.11.0\*.*" -Destination "$DeploymentDir\Tasks\$taskFolder\ps_modules\VstsTaskSdk"

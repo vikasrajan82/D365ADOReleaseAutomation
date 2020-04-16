@@ -2,7 +2,7 @@
     "manifestVersion":  1,
     "id":  "d365-buildreleasetask",
     "name":  "D365 Automation Tools",
-    "version":  "0.0.57",
+    "version":  "0.0.89",
     "publisher":  "VikasRajan",
     "targets":  [
                     {
