@@ -1,4 +1,5 @@
-﻿using Microsoft.Xrm.Tooling.Connector;
+﻿using D365.Xrm.CICD.Base;
+using Microsoft.Xrm.Tooling.Connector;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,11 +10,9 @@ using System.Xml;
 
 namespace D365.Xrm.CICD.SolutionCustomization
 {
-    public class D365SolutionImport
+    public class D365SolutionImport : TaskExtensionBase
     {
         private CrmServiceClient _crmServiceClient;
-
-        private bool _showTraceMessages;
 
         private List<D365Solution> _lstSolutions = new List<D365Solution>();
 
@@ -49,39 +48,6 @@ namespace D365.Xrm.CICD.SolutionCustomization
                 //this.LogADOMessage(ex.StackTrace, LogType.Debug);
 
                 Environment.ExitCode = -1;
-            }
-        }
-
-        private void LogADOMessage(string message, LogType logType)
-        {
-            switch (logType)
-            {
-                case LogType.Warning:
-                    Console.WriteLine($"##vso[task.logissue type=warning]{message}");
-                    break;
-                case LogType.Error:
-                    Console.WriteLine($"##[error]{message}");
-                    break;
-                case LogType.TaskError:
-                    Console.WriteLine($"##vso[task.logissue type=error]{message}");
-                    Console.WriteLine("##vso[task.complete result=Failed]");
-                    break;
-                case LogType.Debug:
-                    Console.WriteLine($"##[debug]{message.Replace(Environment.NewLine, Environment.NewLine + "##[debug]")}");
-                    break;
-                case LogType.Info:
-                    Console.WriteLine(message);
-                    break;
-                case LogType.InProgress:
-                    Console.WriteLine($"       ===> {message}");
-                    break;
-                case LogType.Trace:
-                    if (this._showTraceMessages)
-                    {
-                        Console.WriteLine(message);
-                    }
-                    break;
-
             }
         }
 

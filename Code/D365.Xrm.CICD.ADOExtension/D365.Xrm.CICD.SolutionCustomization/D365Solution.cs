@@ -1,4 +1,5 @@
-﻿using Microsoft.Xrm.Sdk;
+﻿using D365.Xrm.CICD.Base;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Tooling.Connector;
 using System;

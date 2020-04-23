@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace D365.Xrm.CICD.SolutionCustomization
+namespace D365.Xrm.CICD.Base
 {
     public enum LogType
     {
@@ -15,5 +15,11 @@ namespace D365.Xrm.CICD.SolutionCustomization
         Info,
         Trace,
         InProgress
+    }
+
+    public enum RetrieveRecordBy
+    {
+        GUID,
+        FetchXML
     }
 }

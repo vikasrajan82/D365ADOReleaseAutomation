@@ -3,22 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Xrm.CICD.ADOExtension.Library", "D365.Xrm.CICD.ADOExtension.Library\D365.Xrm.CICD.ADOExtension.Library.csproj", "{C18BBB28-C7EF-44DE-9399-C3A2622A0945}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Xrm.CICD.SolutionCustomization", "D365.Xrm.CICD.SolutionCustomization\D365.Xrm.CICD.SolutionCustomization.csproj", "{FF832F7A-D86D-4E3F-9B58-15CC0921D9C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{166A2D97-4F57-4B21-8147-9D5BD298107B}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "D365.Xrm.CICD.Base", "D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.shproj", "{F0FD3858-5A49-4C72-95EB-DC72E2F2B65F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Xrm.CICD.DataImport", "D365.Xrm.CICD.DataImport\D365.Xrm.CICD.DataImport.csproj", "{8006667B-7147-4156-8536-19A228065B95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Xrm.CICD.UpsertRecord", "D365.Xrm.CICD.UpsertRecord\D365.Xrm.CICD.UpsertRecord.csproj", "{3296D86D-2D0C-4DFB-B8C6-71C12B403CF8}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.projitems*{3296d86d-2d0c-4dfb-b8c6-71c12b403cf8}*SharedItemsImports = 4
+		D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.projitems*{8006667b-7147-4156-8536-19a228065b95}*SharedItemsImports = 4
+		D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.projitems*{f0fd3858-5a49-4c72-95eb-dc72e2f2b65f}*SharedItemsImports = 13
+		D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.projitems*{ff832f7a-d86d-4e3f-9b58-15cc0921d9c0}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C18BBB28-C7EF-44DE-9399-C3A2622A0945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C18BBB28-C7EF-44DE-9399-C3A2622A0945}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C18BBB28-C7EF-44DE-9399-C3A2622A0945}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C18BBB28-C7EF-44DE-9399-C3A2622A0945}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FF832F7A-D86D-4E3F-9B58-15CC0921D9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FF832F7A-D86D-4E3F-9B58-15CC0921D9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF832F7A-D86D-4E3F-9B58-15CC0921D9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +33,14 @@ Global
 		{166A2D97-4F57-4B21-8147-9D5BD298107B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{166A2D97-4F57-4B21-8147-9D5BD298107B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{166A2D97-4F57-4B21-8147-9D5BD298107B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8006667B-7147-4156-8536-19A228065B95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8006667B-7147-4156-8536-19A228065B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8006667B-7147-4156-8536-19A228065B95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8006667B-7147-4156-8536-19A228065B95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3296D86D-2D0C-4DFB-B8C6-71C12B403CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3296D86D-2D0C-4DFB-B8C6-71C12B403CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3296D86D-2D0C-4DFB-B8C6-71C12B403CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3296D86D-2D0C-4DFB-B8C6-71C12B403CF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

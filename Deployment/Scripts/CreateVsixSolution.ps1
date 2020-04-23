@@ -43,6 +43,16 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
                 Copy-Item "$ReleaseDir\..\..\Code\D365.Xrm.CICD.ADOExtension\D365.Xrm.CICD.SolutionCustomization\bin\Debug" "$DeploymentDir\Tasks\$taskFolder\bin" -Force -Recurse
                 break;
             }
+            "D365_ImportDataByCM"
+            { 
+                Copy-Item "$ReleaseDir\..\..\Code\D365.Xrm.CICD.ADOExtension\D365.Xrm.CICD.DataImport\bin\Debug" "$DeploymentDir\Tasks\$taskFolder\bin" -Force -Recurse
+                break;
+            }
+            "D365_UpsertEntityRecord"
+            { 
+                Copy-Item "$ReleaseDir\..\..\Code\D365.Xrm.CICD.ADOExtension\D365.Xrm.CICD.UpsertRecord\bin\Debug" "$DeploymentDir\Tasks\$taskFolder\bin" -Force -Recurse
+                break;
+            }
         }
 
         Copy-Item -Path "$ReleaseDir\Packages\node_modules" -Destination "$DeploymentDir\Tasks\$taskFolder\node_modules" -Force -Recurse
