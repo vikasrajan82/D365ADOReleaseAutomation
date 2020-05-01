@@ -13,6 +13,14 @@ namespace D365.Xrm.CICD.Base
             Console.WriteLine($"##vso[task.setvariable variable={variableName}]{variableValue}");
         }
 
+        private string showInPorgressMessage(string message)
+        {
+            if (!string.IsNullOrEmpty(message) && message.Contains("===>"))
+                return message;
+
+            return $"       ===> {message}";
+        }
+
         protected void LogADOMessage(string message, LogType logType)
         {
             switch (logType)
@@ -34,7 +42,7 @@ namespace D365.Xrm.CICD.Base
                     Console.WriteLine(message);
                     break;
                 case LogType.InProgress:
-                    Console.WriteLine($"       ===> {message}");
+                    Console.WriteLine(this.showInPorgressMessage(message));
                     break;
                 case LogType.Trace:
                     if (this._showTraceMessages)

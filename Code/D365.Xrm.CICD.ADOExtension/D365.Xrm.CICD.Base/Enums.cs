@@ -22,4 +22,10 @@ namespace D365.Xrm.CICD.Base
         GUID,
         FetchXML
     }
+
+    public enum PluginConfigurationType
+    {
+        Secure,
+        Unsecure
+    }
 }

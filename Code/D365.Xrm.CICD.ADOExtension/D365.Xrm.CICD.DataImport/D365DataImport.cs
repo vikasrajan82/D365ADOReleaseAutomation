@@ -166,7 +166,7 @@ namespace D365.Xrm.CICD.DataImport
                             directoryPath + "\\MasterData\\" + dataZipFile.Attributes["filename"].Value,
                             dataZipFile.Attributes["enablebatchmode"] != null ? Convert.ToBoolean(dataZipFile.Attributes["enablebatchmode"].Value) : false,
                             dataZipFile.Attributes["batchsize"] != null ? Convert.ToInt32(dataZipFile.Attributes["batchsize"].Value) : 100,
-                            dataZipFile.Attributes["concurrentthread"] != null ? Convert.ToInt32(dataZipFile.Attributes["concurrentthread"].Value) : 10);
+                            dataZipFile.Attributes["concurrentthread"] != null ? Convert.ToInt32(dataZipFile.Attributes["concurrentthread"].Value) : -1);
 
                         d365DataZip.MessageQueue += LogADOMessage;
 

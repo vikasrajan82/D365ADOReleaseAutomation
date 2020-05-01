@@ -56,8 +56,6 @@ namespace D365.Xrm.CICD.UpsertRecord
             {
                 this.LogADOMessage(ex.Message, LogType.TaskError);
 
-                //this.LogADOMessage(ex.StackTrace, LogType.Debug);
-
                 Environment.ExitCode = -1;
             }
         }

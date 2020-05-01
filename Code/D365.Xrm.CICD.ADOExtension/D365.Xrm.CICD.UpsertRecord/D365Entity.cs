@@ -29,6 +29,8 @@ namespace D365.Xrm.CICD.UpsertRecord
 
         private RetrieveRecordBy _retrieveBy;
 
+        private bool _allowMultipleRetrieval;
+
         /// <summary>
         /// Log Message Handler
         /// </summary>
@@ -44,10 +46,19 @@ namespace D365.Xrm.CICD.UpsertRecord
             string entityName, 
             CrmServiceClient crmSvcClient,
             bool createRecord
+            ) : this(entityName, crmSvcClient, createRecord, false)
+        { }
+
+        public D365Entity(
+            string entityName,
+            CrmServiceClient crmSvcClient,
+            bool createRecord,
+            bool allowMultipleRetrievals
             )
         {
             this._entityName = entityName;
             this._crmSvcClient = crmSvcClient;
+            this._allowMultipleRetrieval = allowMultipleRetrievals;
         }
 
         public void RetrieveRecord(RetrieveRecordBy retrieveBy, string recordGuid, string recordFetchXml, string nameValueJson)

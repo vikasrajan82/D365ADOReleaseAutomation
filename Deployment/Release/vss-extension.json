@@ -2,7 +2,7 @@
     "manifestVersion":  1,
     "id":  "d365-buildreleasetask",
     "name":  "D365 Automation Tools",
-    "version":  "0.0.122",
+    "version":  "0.0.154",
     "publisher":  "VikasRajan",
     "targets":  [
                     {
@@ -36,16 +36,36 @@
               },
     "files":  [
                   {
+                      "path":  "Tasks/D365_EnableAccessTeam"
+                  },
+                  {
                       "path":  "Tasks/D365_ImportDataByCM"
                   },
                   {
                       "path":  "Tasks/D365_ImportSolutionByConfig"
                   },
                   {
+                      "path":  "Tasks/D365_UpdatePluginConfiguration"
+                  },
+                  {
                       "path":  "Tasks/D365_UpsertEntityRecord"
+                  },
+                  {
+                      "path":  "test1.htm",
+                      "addressable":  true
                   }
               ],
     "contributions":  [
+                          {
+                              "id":  "D365_EnableAccessTeam",
+                              "type":  "ms.vss-distributed-task.task",
+                              "targets":  [
+                                              "ms.vss-distributed-task.tasks"
+                                          ],
+                              "properties":  {
+                                                 "name":  "Tasks/D365_EnableAccessTeam"
+                                             }
+                          },
                           {
                               "id":  "D365_ImportDataByCM",
                               "type":  "ms.vss-distributed-task.task",
@@ -64,6 +84,16 @@
                                           ],
                               "properties":  {
                                                  "name":  "Tasks/D365_ImportSolutionByConfig"
+                                             }
+                          },
+                          {
+                              "id":  "D365_UpdatePluginConfiguration",
+                              "type":  "ms.vss-distributed-task.task",
+                              "targets":  [
+                                              "ms.vss-distributed-task.tasks"
+                                          ],
+                              "properties":  {
+                                                 "name":  "Tasks/D365_UpdatePluginConfiguration"
                                              }
                           },
                           {

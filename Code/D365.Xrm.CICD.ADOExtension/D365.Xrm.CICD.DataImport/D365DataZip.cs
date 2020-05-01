@@ -128,16 +128,46 @@ namespace D365.Xrm.CICD.DataImport
                 ////.AddParameter("LogWriteDirectory", @"C:\Program Files\WindowsPowerShell\Modules\Microsoft.Xrm.Tooling.ConfigurationMigration\1.0.0.26");
 
                 ps.Streams.Progress.DataAdded += Progress_DataAdded;
+                ps.Streams.Error.DataAdded += Error_DataAdded;
+                ps.Streams.Information.DataAdded += Information_DataAdded;
+                ps.Streams.Warning.DataAdded += Warning_DataAdded;
 
                 ps.Invoke();
 
-                if (ps.Streams.Error.Count > 0)
-                {
-                    foreach (ErrorRecord error in ps.Streams.Error)
-                    {
-                        this.MessageQueue(error.ToString(), LogType.Warning);
-                    }
-                }
+                //if (ps.Streams.Error.Count > 0)
+                //{
+                //    foreach (ErrorRecord error in ps.Streams.Error)
+                //    {
+                //        //this.MessageQueue(error.ToString(), LogType.Warning, true);
+                //    }
+                //}
+            }
+        }
+
+        private void Warning_DataAdded(object sender, DataAddedEventArgs e)
+        {
+            WarningRecord warningRecord = ((PSDataCollection<WarningRecord>)sender)[e.Index];
+            if (!string.IsNullOrEmpty(warningRecord.Message))
+            {
+                this.MessageQueue(warningRecord.Message, LogType.Warning);
+            }
+        }
+
+        private void Information_DataAdded(object sender, DataAddedEventArgs e)
+        {
+            InformationalRecord informationRecord = ((PSDataCollection<InformationalRecord>)sender)[e.Index];
+            if (!string.IsNullOrEmpty(informationRecord.Message))
+            {
+                this.MessageQueue(informationRecord.Message, LogType.InProgress);
+            }
+        }
+
+        private void Error_DataAdded(object sender, DataAddedEventArgs e)
+        {
+            ErrorRecord errorRecord = ((PSDataCollection<ErrorRecord>)sender)[e.Index];
+            if (!string.IsNullOrEmpty(errorRecord.Exception.Message))
+            {
+                this.MessageQueue(errorRecord.Exception.Message, LogType.TaskError);
             }
         }
 

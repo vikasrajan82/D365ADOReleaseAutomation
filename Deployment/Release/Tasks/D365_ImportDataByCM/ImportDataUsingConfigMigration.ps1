@@ -26,13 +26,13 @@ $replaceGuids = Get-VstsInput -Name replaceguids
 
 If (Test-Path -Path $configFile -PathType Leaf)
 {
-    Write-Host "$configFile is found. Processing the solution import"
+    Write-Host "$configFile is found. Processing the data import"
 
     $enableTracing = $True
 
     Write-Host "Installing Configuration Migration Module........." –NoNewline
 
-    Install-Module -Name Microsoft.Xrm.Tooling.ConfigurationMigration -Force -AllowClobber
+    Install-Module -Name Microsoft.Xrm.Tooling.ConfigurationMigration -RequiredVersion 1.0.0.26 -Force -AllowClobber
 
     Write-Host "Completed"
 
@@ -41,6 +41,7 @@ If (Test-Path -Path $configFile -PathType Leaf)
     $assembly = [Reflection.Assembly]::LoadFile("$ScriptDir\bin\D365.Xrm.CICD.DataImport.dll")
     $assembly = [Reflection.Assembly]::LoadFile("$ScriptDir\bin\Newtonsoft.Json.dll")
     $assembly = [Reflection.Assembly]::LoadFile("$ScriptDir\bin\Microsoft.Xrm.Sdk.dll")
+    $assembly = [Reflection.Assembly]::LoadFile("$ScriptDir\bin\Microsoft.Xrm.Sdk.Deployment.dll")
     $assembly = [Reflection.Assembly]::LoadFile("$ScriptDir\bin\Microsoft.Xrm.Tooling.Connector.dll")
     $assembly = [Reflection.Assembly]::LoadFile("$ScriptDir\bin\Microsoft.IdentityModel.Clients.ActiveDirectory.dll")
     $assembly = [Reflection.Assembly]::LoadFile("$ScriptDir\bin\Microsoft.Crm.Sdk.Proxy.dll")
