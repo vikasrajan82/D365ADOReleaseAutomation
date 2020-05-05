@@ -9,7 +9,7 @@
     "version":  {
                     "Major":  0,
                     "Minor":  1,
-                    "Patch":  26
+                    "Patch":  81
                 },
     "visibility":  [
                        "Build",
@@ -44,9 +44,9 @@
                                           "rows":  "3"
                                       },
                        "label":  "Configuration Value",
-                       "defaultValue":  "",
+                       "defaultValue":  "{\u0027stepname1\u0027:\u0027value1\u0027,\u0027stepname2\u0027:\u0027value2\u0027}",
                        "required":  true,
-                       "helpMarkDown":  "Value to be updated in the secure/unsecure configuration"
+                       "helpMarkDown":  "Value to be updated in the secure/unsecure configuration. This should be in the format {\u0027stepname1\u0027:\u0027value1\u0027,\u0027stepname2\u0027:\u0027value2\u0027}"
                    }
                ],
     "execution":  {

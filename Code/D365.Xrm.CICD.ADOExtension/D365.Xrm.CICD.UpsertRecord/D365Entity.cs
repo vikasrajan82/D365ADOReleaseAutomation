@@ -29,8 +29,6 @@ namespace D365.Xrm.CICD.UpsertRecord
 
         private RetrieveRecordBy _retrieveBy;
 
-        private bool _allowMultipleRetrieval;
-
         /// <summary>
         /// Log Message Handler
         /// </summary>
@@ -43,22 +41,12 @@ namespace D365.Xrm.CICD.UpsertRecord
         public event LogMessage MessageQueue;
 
         public D365Entity(
-            string entityName, 
-            CrmServiceClient crmSvcClient,
-            bool createRecord
-            ) : this(entityName, crmSvcClient, createRecord, false)
-        { }
-
-        public D365Entity(
             string entityName,
-            CrmServiceClient crmSvcClient,
-            bool createRecord,
-            bool allowMultipleRetrievals
+            CrmServiceClient crmSvcClient
             )
         {
             this._entityName = entityName;
             this._crmSvcClient = crmSvcClient;
-            this._allowMultipleRetrieval = allowMultipleRetrievals;
         }
 
         public void RetrieveRecord(RetrieveRecordBy retrieveBy, string recordGuid, string recordFetchXml, string nameValueJson)
@@ -78,7 +66,7 @@ namespace D365.Xrm.CICD.UpsertRecord
             {
                 this._entityAttributes = JsonConvert.DeserializeObject<List<D365EntityAttribute>>(nameValueJson);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new Exception("Error occurred while parsing the name value json. Please refer to further documentation at 'https://github.com/vikasrajan82/D365ADOReleaseAutomation/blob/master/README.md'");
             }
@@ -139,7 +127,7 @@ namespace D365.Xrm.CICD.UpsertRecord
 
             if (retrievedRecord != null)
             {
-                this.MessageQueue($"Record({retrievedRecord.Id}) matching the specified criteria was found", LogType.Info);
+                this.MessageQueue($"{retrievedRecord.LogicalName} ({retrievedRecord.Id}) matching the specified criteria was found", LogType.Info);
 
                 this._entityId = retrievedRecord.Id;
 
@@ -210,7 +198,7 @@ namespace D365.Xrm.CICD.UpsertRecord
             }
             else
             {
-                this.MessageQueue($"There is no change to {this._entityName} attribute values...Record was not updated", LogType.Warning);
+                this.MessageQueue($"There is no change to {this._entityName} ({this._entityId}) attribute values...Record was not updated", LogType.Warning);
             }
         }
 

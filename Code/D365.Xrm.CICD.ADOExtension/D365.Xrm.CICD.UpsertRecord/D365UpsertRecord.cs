@@ -37,7 +37,7 @@ namespace D365.Xrm.CICD.UpsertRecord
         {
             try
             {
-                D365Entity entity = new D365Entity(this._entityName, this._crmServiceClient, false);
+                D365Entity entity = new D365Entity(this._entityName, this._crmServiceClient);
 
                 entity.MessageQueue += LogADOMessage;
 

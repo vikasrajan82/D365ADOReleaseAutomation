@@ -19,7 +19,7 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
    Copy-Item "$ReleaseDir\Images\ExtensionIcon.png" $DeploymentDir -Force -Recurse
 
    Copy-Item "$ReleaseDir\Docs\overview.md" $DeploymentDir -Force -Recurse
-   Copy-Item "$ReleaseDir\Docs\test1.htm" $DeploymentDir -Force -Recurse
+   Copy-Item "$ReleaseDir\Docs\xmlformat.md" $DeploymentDir -Force -Recurse
 
    # Updating the VSS Extension file with the created tasks
    $vssExtensionMetadata = Get-Content -Raw -Path "$ReleaseDir\vss-extension.json" | ConvertFrom-Json
@@ -64,6 +64,11 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
                 Copy-Item "$ReleaseDir\..\..\Code\D365.Xrm.CICD.ADOExtension\D365.Xrm.CICD.PluginConfiguration\bin\Debug" "$DeploymentDir\Tasks\$taskFolder\bin" -Force -Recurse
                 break;
             }
+            "D365_AccessTeamTemplates"
+            { 
+                Copy-Item "$ReleaseDir\..\..\Code\D365.Xrm.CICD.ADOExtension\D365.Xrm.CICD.UpsertRecord\bin\Debug" "$DeploymentDir\Tasks\$taskFolder\bin" -Force -Recurse
+                break;
+            }
         }
 
         Copy-Item -Path "$ReleaseDir\Packages\node_modules" -Destination "$DeploymentDir\Tasks\$taskFolder\node_modules" -Force -Recurse
@@ -79,7 +84,7 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
     }
 
     # Adding files required
-    $vssExtensionMetadata.files +=  @('{"path":"test1.htm", "addressable":true }' |  ConvertFrom-Json)
+    $vssExtensionMetadata.files +=  @('{"path":"xmlformat.md", "addressable":true }' |  ConvertFrom-Json)
 
     # Writing the content to extension file
     $vssExtensionMetadata | ConvertTo-Json -depth 100 | Set-Content "$ReleaseDir\vss-extension.json"

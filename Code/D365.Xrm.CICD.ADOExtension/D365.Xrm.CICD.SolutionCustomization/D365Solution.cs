@@ -114,7 +114,7 @@ namespace D365.Xrm.CICD.SolutionCustomization
                     if (!this.CheckSolutionInstallationInProgress())
                     {
                         this.MessageQueue($"Installing Solution {this._fileName}", LogType.Info);
-
+                        
                         this._asyncOperationId = this._crmSvcClient.ImportSolutionToCrmAsync(
                             this._filePath, 
                             out this._importJobId, 

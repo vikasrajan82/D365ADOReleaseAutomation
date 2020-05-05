@@ -4,12 +4,12 @@
     "friendlyName":  "Enable Access Team",
     "description":  "Enable Access Team on D365 Entity",
     "helpMarkDown":  "",
-    "category":  "Build",
+    "category":  "Deploy",
     "author":  "Vikas Rajan",
     "version":  {
                     "Major":  0,
                     "Minor":  1,
-                    "Patch":  33
+                    "Patch":  88
                 },
     "visibility":  [
                        "Build",

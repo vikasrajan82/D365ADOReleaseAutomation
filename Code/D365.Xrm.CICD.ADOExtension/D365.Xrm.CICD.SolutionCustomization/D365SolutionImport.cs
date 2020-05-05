@@ -81,7 +81,7 @@ namespace D365.Xrm.CICD.SolutionCustomization
                     foreach (XmlNode solutionFiles in solutionNodes.SelectNodes("solutionfile"))
                     {
                         var d365Solution = new D365Solution(
-                                directoryPath + "\\Solutions\\" + solutionFiles.Attributes["solutionpackagefilename"].Value,
+                                directoryPath + "\\" + solutionFiles.Attributes["solutionpackagefilename"].Value,
                                 Convert.ToBoolean(solutionFiles.Attributes["overwriteunmanagedcustomizations"].Value),
                                 Convert.ToBoolean(solutionFiles.Attributes["publishworkflowsandactivateplugins"].Value),
                                 solutionFiles.Attributes["replacecanvasguids"] != null ? Convert.ToBoolean(solutionFiles.Attributes["replacecanvasguids"].Value) : false,

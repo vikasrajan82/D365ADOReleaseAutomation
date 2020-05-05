@@ -9,7 +9,7 @@
     "version":  {
                     "Major":  0,
                     "Minor":  1,
-                    "Patch":  52
+                    "Patch":  107
                 },
     "visibility":  [
                        "Build",
@@ -76,7 +76,7 @@
                        "label":  "Attribute Name/Value JSON array",
                        "defaultValue":  "",
                        "required":  true,
-                       "helpMarkDown":  "Specify the attriute name-value pair in a JSON format. { [name:accountname, value:\u0027Contoso Industries\u0027]}. The type attribute is optional except for partylist attributes."
+                       "helpMarkDown":  "Specify the attriute name-value pair in a JSON format. [{name:\"accountname\", value:\"Contoso Industries\"}]. The type attribute is optional except for partylist attributes."
                    },
                    {
                        "name":  "createrecord",

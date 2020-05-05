@@ -1,21 +1,21 @@
 {
-    "id":  "15b36f79-7f22-4e88-b8d7-050a965001c5",
-    "name":  "D365_ImportDataByCM",
-    "friendlyName":  "Import Configuration Migration Zip",
-    "description":  "Allows import of the D365 data zip using the configuration migration utility",
+    "id":  "28d4a0f9-7472-42a7-84a4-37e67606766d",
+    "name":  "D365_AccessTeamTemplates",
+    "friendlyName":  "Upsert Access Team Templates",
+    "description":  "Create or Update access team templates using a configuration file",
     "helpMarkDown":  "",
     "category":  "Deploy",
     "author":  "Vikas Rajan",
     "version":  {
                     "Major":  0,
                     "Minor":  1,
-                    "Patch":  121
+                    "Patch":  16
                 },
     "visibility":  [
                        "Build",
                        "Release"
                    ],
-    "instanceNameFormat":  "Import D365 data zip using Configuration Migration",
+    "instanceNameFormat":  "Create/Update access team templates",
     "inputs":  [
                    {
                        "name":  "connectionstring",
@@ -32,27 +32,11 @@
                        "defaultValue":  "",
                        "required":  true,
                        "helpMarkDown":  "Absolute path to the configuration file"
-                   },
-                   {
-                       "name":  "replaceguids",
-                       "type":  "filePath",
-                       "label":  "Replace Guids",
-                       "defaultValue":  "",
-                       "required":  false,
-                       "helpMarkDown":  "Absolute path to the file containing guids to be replaced"
-                   },
-                   {
-                       "name":  "enabletracing",
-                       "type":  "boolean",
-                       "label":  "Enable Tracing",
-                       "defaultValue":  false,
-                       "required":  true,
-                       "helpMarkDown":  "Indicates if tracing has to be enabled"
                    }
                ],
     "execution":  {
                       "PowerShell3":  {
-                                          "target":  "ImportDataUsingConfigMigration.ps1"
+                                          "target":  "AccessTeamTemplates.ps1"
                                       }
                   }
 }

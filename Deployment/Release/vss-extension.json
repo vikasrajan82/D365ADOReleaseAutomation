@@ -2,7 +2,7 @@
     "manifestVersion":  1,
     "id":  "d365-buildreleasetask",
     "name":  "D365 Automation Tools",
-    "version":  "0.0.154",
+    "version":  "0.0.208",
     "publisher":  "VikasRajan",
     "targets":  [
                     {
@@ -36,6 +36,9 @@
               },
     "files":  [
                   {
+                      "path":  "Tasks/D365_AccessTeamTemplates"
+                  },
+                  {
                       "path":  "Tasks/D365_EnableAccessTeam"
                   },
                   {
@@ -51,11 +54,21 @@
                       "path":  "Tasks/D365_UpsertEntityRecord"
                   },
                   {
-                      "path":  "test1.htm",
+                      "path":  "xmlformat.md",
                       "addressable":  true
                   }
               ],
     "contributions":  [
+                          {
+                              "id":  "D365_AccessTeamTemplates",
+                              "type":  "ms.vss-distributed-task.task",
+                              "targets":  [
+                                              "ms.vss-distributed-task.tasks"
+                                          ],
+                              "properties":  {
+                                                 "name":  "Tasks/D365_AccessTeamTemplates"
+                                             }
+                          },
                           {
                               "id":  "D365_EnableAccessTeam",
                               "type":  "ms.vss-distributed-task.task",
