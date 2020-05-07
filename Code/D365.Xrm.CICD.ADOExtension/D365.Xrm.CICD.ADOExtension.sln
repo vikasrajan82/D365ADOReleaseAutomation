@@ -17,11 +17,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Xrm.CICD.EnableAccessT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Xrm.CICD.PluginConfiguration", "D365.Xrm.CICD.PluginConfiguration\D365.Xrm.CICD.PluginConfiguration.csproj", "{C4351067-9E59-4A7A-B5E7-3EE836FCF1DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Xrm.CICD.RetrieveRecord", "D365.Xrm.CICD.RetrieveRecord\D365.Xrm.CICD.RetrieveRecord.csproj", "{B6801A87-2607-4AA2-BC02-F3D124219CFE}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.projitems*{3296d86d-2d0c-4dfb-b8c6-71c12b403cf8}*SharedItemsImports = 4
 		D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.projitems*{8006667b-7147-4156-8536-19a228065b95}*SharedItemsImports = 4
 		D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.projitems*{b3629759-33cb-48e2-8f5a-cce7ff743e8e}*SharedItemsImports = 4
+		D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.projitems*{b6801a87-2607-4aa2-bc02-f3d124219cfe}*SharedItemsImports = 4
 		D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.projitems*{c4351067-9e59-4a7a-b5e7-3ee836fcf1da}*SharedItemsImports = 4
 		D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.projitems*{f0fd3858-5a49-4c72-95eb-dc72e2f2b65f}*SharedItemsImports = 13
 		D365.Xrm.CICD.Base\D365.Xrm.CICD.Base.projitems*{ff832f7a-d86d-4e3f-9b58-15cc0921d9c0}*SharedItemsImports = 4
@@ -55,6 +58,10 @@ Global
 		{C4351067-9E59-4A7A-B5E7-3EE836FCF1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4351067-9E59-4A7A-B5E7-3EE836FCF1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4351067-9E59-4A7A-B5E7-3EE836FCF1DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6801A87-2607-4AA2-BC02-F3D124219CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6801A87-2607-4AA2-BC02-F3D124219CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6801A87-2607-4AA2-BC02-F3D124219CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6801A87-2607-4AA2-BC02-F3D124219CFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

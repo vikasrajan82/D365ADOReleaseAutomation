@@ -1,5 +1,5 @@
 {
-    "id":  "f9899ec9-61c9-4fc7-b990-5b52a726c46b",
+    "id":  "be6f5510-6050-4607-87b2-802f1f5fad1e",
     "name":  "D365_UpsertEntityRecord",
     "friendlyName":  "Upsert Entity Record",
     "description":  "Insert or Update entity record with static or pipeline variable",
@@ -9,7 +9,7 @@
     "version":  {
                     "Major":  0,
                     "Minor":  1,
-                    "Patch":  113
+                    "Patch":  1
                 },
     "visibility":  [
                        "Build",

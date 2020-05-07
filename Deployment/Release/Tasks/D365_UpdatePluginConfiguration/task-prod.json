@@ -1,5 +1,5 @@
 {
-    "id":  "499e7a96-44e7-4bdc-bd61-a7cfba2ee14c",
+    "id":  "cf0fb512-ceba-4b0c-b336-ce0a309377b3",
     "name":  "D365_UpdatePluginConfiguration",
     "friendlyName":  "Update Plugin Configuration",
     "description":  "Update the secure/unsecure configuration of the specified plugin step names",
@@ -9,7 +9,7 @@
     "version":  {
                     "Major":  0,
                     "Minor":  1,
-                    "Patch":  87
+                    "Patch":  1
                 },
     "visibility":  [
                        "Build",

@@ -1,5 +1,6 @@
 
 
+
 ## D365 Automation Tools for Build & Release Pipelines
 
 Use D365 Automation Tools to build deployment tasks for Dynamics 365 CE. The tool was developed based on the requirement that originated from actual projects.
@@ -38,7 +39,9 @@ The following tasks are part of the automation tools:  **_( <span id="asterisk">
     [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/xrm-tooling/use-connection-strings-xrm-tooling-connect#connection-string-parameters) for further details
     -   _Configuration File<span id="asterisk">*</span>:_ Location of configuration file that lists the zip files to be imported.
     -   _Replace Guids:_  Location of configuration file that has details about the guid to be replaced. This is required in case of association to records such as the root business unit, base currency id, etc which differs based on organization.
----    
+---   
+<a name="UpsertEntity"></a>
+
  3. **Upsert Entity Record:** Insert or Update entity record based on the filter condition specified. Primarily used for updating configuration records. However this is not a bulk insert task and can only be used to insert or update a single record. The task requires the below input parameters for execution:
     -   _Connection String<span id="asterisk">*</span>:_ Connection string to connect to the D365 Instance. Please refer 
     [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/xrm-tooling/use-connection-strings-xrm-tooling-connect#connection-string-parameters) for further details
@@ -55,16 +58,36 @@ The following tasks are part of the automation tools:  **_( <span id="asterisk">
      `[{name:"accountid", value:"453234"},`<br>`{name:"regarding", value:"47cf9395-b066-43d6-b7cd-29f75df6e397", type:"account"}]`<br><br>
     - _Create Record (if not present):_ On selection, record will be created if there are no matching records 
 ---
+<a name="EnableAccessTeam"></a>
+
 4. **Enable Access Team:** Enable access team on D365 Entities. Use this task to enable it for single or multiple entities. The task requires the below input parameters for execution:
     -   _Connection String<span id="asterisk">*</span>:_ Connection string to connect to the D365 Instance. Please refer 
     [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/xrm-tooling/use-connection-strings-xrm-tooling-connect#connection-string-parameters) for further details
     -   _Entity List<span id="asterisk">*</span>:_ Entity Logical Name separated by comma. eg: <br>
      `account,contact,lead`
 ---
+<a name="UpdatePluginConfiguration"></a>
+
 5. **Update Plugin Configuration:** Updates the secure or unsecure configuration for single or multiple plugin steps. The unsecure configurations are updated as part of the solution import. However, if there are environment specific values to be updated then this task can be utilized. The task requires the below input parameters for execution:
     -   _Connection String<span id="asterisk">*</span>:_ Connection string to connect to the D365 Instance. Please refer 
     [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/xrm-tooling/use-connection-strings-xrm-tooling-connect#connection-string-parameters) for further details
     -   _Plugin Configuration Type<span id="asterisk">*</span>:_ Indicate if the secure or unsecure configuration has to be updated
     -  _Configuration Value<span id="asterisk">*</span>:_ Name-value pair for plugin step name in the format below:<br>
      `{StepName1:Value1,StepName2:Value2,StepName3:Value3}`
+    
+ ---
+<a name="ExportAccessTeamTemplate"></a>
+
+6. **Export  Access Team Templates:** Export the configured Access Team Templates from the source environment.  The task requires the below input parameters for execution:
+    -   _Connection String<span id="asterisk">*</span>:_ Connection string to connect to the D365 Instance. Please refer 
+    [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/xrm-tooling/use-connection-strings-xrm-tooling-connect#connection-string-parameters) for further details
+    -   _Output File<span id="asterisk">*</span>:_ The absolute path for the file that is required to hold the Access Team details. The file should be of type "json" and will be created if the file does not exist.
+   
+ ---
+<a name="UpsertAccessTeamTemplate"></a>
+
+7. **Upsert  Access Team Templates:** Create or Update the Access Team Templates. Details about the Access Team Templates are read from a configuration file. The task '[Export Access Team Template](#ExportAccessTeamTemplate)' can be used to generate the configuration file. The task requires the below input parameters for execution:
+    -   _Connection String<span id="asterisk">*</span>:_ Connection string to connect to the D365 Instance. Please refer 
+    [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/xrm-tooling/use-connection-strings-xrm-tooling-connect#connection-string-parameters) for further details
+    -   _Configuration File<span id="asterisk">*</span>:_ Configuration file generated from '[Export Access Team Template](#ExportAccessTeamTemplate)' 
     

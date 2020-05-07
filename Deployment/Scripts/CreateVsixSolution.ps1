@@ -15,7 +15,7 @@ New-Item -Path "$ScriptDir\..\" -Name "$DeploymentDirName" -Type Directory
 if (Test-Path -Path $DeploymentDir -PathType Container)
 {
    Copy-Item "$ReleaseDir\Tasks" $DeploymentDir -Force -Recurse
-
+   
    Copy-Item "$ReleaseDir\Images\ExtensionIcon.png" $DeploymentDir -Force -Recurse
 
    Copy-Item "$ReleaseDir\Docs\overview.md" $DeploymentDir -Force -Recurse
@@ -35,6 +35,8 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
         $taskJson.version.Patch = $taskJson.version.Patch + 1
         $taskJson | ConvertTo-Json -depth 100 | Set-Content "$ReleaseDir\Tasks\$taskFolder\task.json"
         Copy-Item "$ReleaseDir\Tasks\$taskFolder\task.json" "$DeploymentDir\Tasks\$taskFolder" -Force -Recurse
+
+        Remove-Item "$ReleaseDir\Tasks\$taskFolder\task-prod.json" -Force
 
         # Copying the bin folder
          Switch ($taskFolder)
@@ -67,6 +69,11 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
             "D365_AccessTeamTemplates"
             { 
                 Copy-Item "$ReleaseDir\..\..\Code\D365.Xrm.CICD.ADOExtension\D365.Xrm.CICD.UpsertRecord\bin\Debug" "$DeploymentDir\Tasks\$taskFolder\bin" -Force -Recurse
+                break;
+            }
+             "D365_RetrieveAccessTeamTemplates"
+            { 
+                Copy-Item "$ReleaseDir\..\..\Code\D365.Xrm.CICD.ADOExtension\D365.Xrm.CICD.RetrieveRecord\bin\Debug" "$DeploymentDir\Tasks\$taskFolder\bin" -Force -Recurse
                 break;
             }
         }

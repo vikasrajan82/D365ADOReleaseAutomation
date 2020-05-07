@@ -2,7 +2,7 @@
     "manifestVersion":  1,
     "id":  "d365-buildreleasetask",
     "name":  "D365 Automation Tools",
-    "version":  "0.0.208",
+    "version":  "0.0.214",
     "publisher":  "VikasRajan",
     "targets":  [
                     {
@@ -46,6 +46,9 @@
                   },
                   {
                       "path":  "Tasks/D365_ImportSolutionByConfig"
+                  },
+                  {
+                      "path":  "Tasks/D365_RetrieveAccessTeamTemplates"
                   },
                   {
                       "path":  "Tasks/D365_UpdatePluginConfiguration"
@@ -97,6 +100,16 @@
                                           ],
                               "properties":  {
                                                  "name":  "Tasks/D365_ImportSolutionByConfig"
+                                             }
+                          },
+                          {
+                              "id":  "D365_RetrieveAccessTeamTemplates",
+                              "type":  "ms.vss-distributed-task.task",
+                              "targets":  [
+                                              "ms.vss-distributed-task.tasks"
+                                          ],
+                              "properties":  {
+                                                 "name":  "Tasks/D365_RetrieveAccessTeamTemplates"
                                              }
                           },
                           {

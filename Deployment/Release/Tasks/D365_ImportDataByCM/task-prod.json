@@ -1,5 +1,5 @@
 {
-    "id":  "15b36f79-7f22-4e88-b8d7-050a965001c5",
+    "id":  "efb2c69b-cde7-4b4f-b700-9560f33e098b",
     "name":  "D365_ImportDataByCM",
     "friendlyName":  "Import Configuration Migration Zip",
     "description":  "Allows import of the D365 data zip using the configuration migration utility",
@@ -9,7 +9,7 @@
     "version":  {
                     "Major":  0,
                     "Minor":  1,
-                    "Patch":  127
+                    "Patch":  1
                 },
     "visibility":  [
                        "Build",
