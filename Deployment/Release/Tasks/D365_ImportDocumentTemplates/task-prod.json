@@ -1,13 +1,13 @@
 {
-    "id":  "64ab01c8-c0b3-410d-8387-7aa6ba8fe406",
-    "name":  "D365_ImportSolutionByConfig",
-    "friendlyName":  "Import Solution using configuration file",
-    "description":  "Imports solution as per sequence specified in the configuration xml.",
+    "id":  "a709d5ab-8356-4228-9172-58d362fc4aa7",
+    "name":  "D365_ImportDocumentTemplates",
+    "friendlyName":  "Import Document Templates",
+    "description":  "Create or Update document templates using a configuration file",
     "helpMarkDown":  "",
-    "category":  "Build",
+    "category":  "Deploy",
     "author":  "Vikas Rajan",
     "version":  {
-                    "Major":  1,
+                    "Major":  0,
                     "Minor":  1,
                     "Patch":  18
                 },
@@ -15,7 +15,7 @@
                        "Build",
                        "Release"
                    ],
-    "instanceNameFormat":  "Import Solution using configuration file",
+    "instanceNameFormat":  "Create/Update document templates",
     "inputs":  [
                    {
                        "name":  "connectionstring",
@@ -31,20 +31,12 @@
                        "label":  "Configuration File",
                        "defaultValue":  "",
                        "required":  true,
-                       "helpMarkDown":  "Absolute path to the configuration file"
-                   },
-                   {
-                       "name":  "enabletracing",
-                       "type":  "boolean",
-                       "label":  "Enable Tracing",
-                       "defaultValue":  false,
-                       "required":  true,
-                       "helpMarkDown":  "Indicates if tracing has to be enabled"
+                       "helpMarkDown":  "Absolute path to the configuration file. The file should have details about document templates in a json format. The file can also be generted using \u0027Export Document Templates\u0027 task."
                    }
                ],
     "execution":  {
                       "PowerShell3":  {
-                                          "target":  "ImportSolutionFromConfigFile.ps1"
+                                          "target":  "ImportDocumentTemplates.ps1"
                                       }
                   }
 }

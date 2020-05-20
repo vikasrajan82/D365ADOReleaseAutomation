@@ -20,8 +20,6 @@ namespace D365.Xrm.CICD.RetrieveRecord
 
         private const string TEAM_TEMPLATE_ENTITY_NAME = "teamtemplate";
 
-        private Dictionary<int, string> _objectTypeEntityName;
-
         private List<D365AccessTeamTemplate> _lstAccessTeams;
 
         public D365RetrieveAccessTeams(string connectionString)
@@ -46,7 +44,6 @@ namespace D365.Xrm.CICD.RetrieveRecord
 
                 this.LogADOMessage($"Retrieved {accessTeamTemplates.Entities.Count} Access Team Templates", LogType.Info);
 
-                this._objectTypeEntityName = new Dictionary<int, string>();
                 this._lstAccessTeams = new List<D365AccessTeamTemplate>();
 
                 foreach (Entity accessTeamTemplate in accessTeamTemplates.Entities)
@@ -59,7 +56,7 @@ namespace D365.Xrm.CICD.RetrieveRecord
                             Name = accessTeamTemplate.Attributes["teamtemplatename"].ToString(),
                             Description = accessTeamTemplate.Contains("description") && accessTeamTemplate.Attributes["description"] != null ? accessTeamTemplate.Attributes["description"].ToString() : null,
                             DefaultAccessRightsMask = accessTeamTemplate.Contains("defaultaccessrightsmask") && accessTeamTemplate.Attributes["defaultaccessrightsmask"] != null ? accessTeamTemplate.Attributes["defaultaccessrightsmask"].ToString() : null,
-                            EntityName = accessTeamTemplate.Contains("objecttypecode") ? this.GetEntityLogicalName(accessTeamTemplate.GetAttributeValue<int>("objecttypecode")) : null
+                            EntityName = accessTeamTemplate.Contains("objecttypecode") ? this.GetEntityLogicalName(accessTeamTemplate.GetAttributeValue<int>("objecttypecode"), this._crmServiceClient) : null
                         };
 
                         this._lstAccessTeams.Add(accessTemplateRecord);
@@ -107,53 +104,7 @@ namespace D365.Xrm.CICD.RetrieveRecord
             return $"{parentFolder}\\{fileName}";
         }
 
-        private string GetEntityLogicalName(int objectTypeCode)
-        {
-            if (this._objectTypeEntityName == null)
-                return null;
-
-            if (this._objectTypeEntityName.ContainsKey(objectTypeCode))
-            {
-                return this._objectTypeEntityName[objectTypeCode];
-            }
-
-            
-            RetrieveMetadataChangesResponse retrieveMetadataChangeResponse = this.RetrieveMetadataInformation(objectTypeCode);
-
-            if (retrieveMetadataChangeResponse != null && retrieveMetadataChangeResponse.EntityMetadata.Count == 1)
-            {
-                this._objectTypeEntityName.Add(objectTypeCode, retrieveMetadataChangeResponse.EntityMetadata[0].LogicalName);
-
-                return retrieveMetadataChangeResponse.EntityMetadata[0].LogicalName;
-            }
-
-            return null;
-        }
-
-        private RetrieveMetadataChangesResponse RetrieveMetadataInformation(int objectTypeCode)
-        {
-            MetadataFilterExpression objectTypeMetadataFilter = new MetadataFilterExpression(LogicalOperator.And);
-            objectTypeMetadataFilter.Conditions.Add(new MetadataConditionExpression("ObjectTypeCode", MetadataConditionOperator.Equals, objectTypeCode));
-
-            MetadataPropertiesExpression metadataProperties = new MetadataPropertiesExpression("ObjectTypeCode")
-            {
-                AllProperties = false
-            };
-
-            EntityQueryExpression metadataQueryExpression = new EntityQueryExpression()
-            {
-                Criteria = objectTypeMetadataFilter,
-                Properties = metadataProperties
-            };
-
-            RetrieveMetadataChangesRequest retrieveMetadataChangeRequest = new RetrieveMetadataChangesRequest()
-            {
-                Query = metadataQueryExpression,
-                DeletedMetadataFilters = DeletedMetadataFilters.OptionSet
-            };
-
-            return (RetrieveMetadataChangesResponse)this._crmServiceClient.Execute(retrieveMetadataChangeRequest);
-        }
+        
 
         private EntityCollection RetrieveAccessTeamTemplates()
         {

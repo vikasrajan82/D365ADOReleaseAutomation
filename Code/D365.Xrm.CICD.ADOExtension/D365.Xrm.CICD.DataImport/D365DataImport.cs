@@ -64,7 +64,7 @@ namespace D365.Xrm.CICD.DataImport
             {
                 this.LogADOMessage(ex.Message, LogType.TaskError);
 
-                this.LogADOMessage(ex.StackTrace, LogType.Debug);
+                //this.LogADOMessage(ex.StackTrace, LogType.Debug);
 
                 Environment.ExitCode = -1;
             }
@@ -73,8 +73,7 @@ namespace D365.Xrm.CICD.DataImport
         private void ImportDataZip()
         {
             var initial = InitialSessionState.CreateDefault();
-            //initial.ImportPSModule(new[] { "Microsoft.Xrm.Tooling.ConfigurationMigration" });
-
+            
             using (var runSpace = RunspaceFactory.CreateRunspace(initial))
             {
                 runSpace.Open();
@@ -98,9 +97,20 @@ namespace D365.Xrm.CICD.DataImport
                     foreach (dynamic entity in entities)
                     {
                         //dictionary to store source guid and target guid for replacement 
-                        this._guidsEntry.Add(entity.guid, getEntityGuid(entity.entity, entity.filter));
+                        dynamic targetValue = getEntityGuid(entity.entity, entity.filter);
+                        this._guidsEntry.Add(entity.guid, targetValue);
+
+                        this.LogADOMessage($"'{entity.guid}' will be replaced with '{targetValue}'", LogType.Trace);
                     }
                 }
+                else
+                {
+                    throw new Exception($"Replace GUIDs File {this._guidsJson} was not found");
+                }
+            }
+            else
+            {
+                this.LogADOMessage("Replace Guid file was not specified", LogType.Trace);
             }
         }
 
@@ -128,17 +138,34 @@ namespace D365.Xrm.CICD.DataImport
 
         private ArrayList retrieveMasterEntitiesGuid()
         {
+            string parentFolder = Path.GetDirectoryName(this._guidsJson);
+            string fileName = Path.GetFileName(this._guidsJson);
+
+            if (!fileName.ToLower().EndsWith(".json"))
+            {
+                throw new Exception("'Replace Guids' File should have extension of type '.json'");
+            }
+
             ArrayList lst = new ArrayList();
 
-            JArray entityGuids = (JArray)JsonConvert.DeserializeObject(File.ReadAllText(this._guidsJson));
-            foreach (JToken entity in entityGuids)
+            try
             {
-                dynamic _entityDetails = new System.Dynamic.ExpandoObject();
-                _entityDetails.entity = (string)entity["entity"];
-                _entityDetails.guid = (string)entity["guid"];
-                _entityDetails.filter = (string)entity["filter"];
+                JArray entityGuids = (JArray)JsonConvert.DeserializeObject(File.ReadAllText(this._guidsJson));
+                foreach (JToken entity in entityGuids)
+                {
+                    dynamic _entityDetails = new System.Dynamic.ExpandoObject();
+                    _entityDetails.entity = (string)entity["entity"];
+                    _entityDetails.guid = (string)entity["guid"];
+                    _entityDetails.filter = (string)entity["filter"];
 
-                lst.Add(_entityDetails);
+                    lst.Add(_entityDetails);
+                }
+
+                this.LogADOMessage($"No. of Guids to be replaced: {lst.Count.ToString()}", LogType.Trace);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error occurred while reading '{this._guidsJson}'. Please ensure the file follows the proper format.");
             }
 
             return lst;
@@ -163,7 +190,7 @@ namespace D365.Xrm.CICD.DataImport
                     foreach (XmlNode dataZipFile in zipFilesToImport.SelectNodes("configimportfile"))
                     {
                         var d365DataZip = new D365DataZip(
-                            directoryPath + "\\MasterData\\" + dataZipFile.Attributes["filename"].Value,
+                            directoryPath + "\\" + dataZipFile.Attributes["filename"].Value,
                             dataZipFile.Attributes["enablebatchmode"] != null ? Convert.ToBoolean(dataZipFile.Attributes["enablebatchmode"].Value) : false,
                             dataZipFile.Attributes["batchsize"] != null ? Convert.ToInt32(dataZipFile.Attributes["batchsize"].Value) : 100,
                             dataZipFile.Attributes["concurrentthread"] != null ? Convert.ToInt32(dataZipFile.Attributes["concurrentthread"].Value) : -1);

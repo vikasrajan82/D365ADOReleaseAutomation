@@ -28,4 +28,10 @@ namespace D365.Xrm.CICD.Base
         Secure,
         Unsecure
     }
+
+    internal enum RetrieveMetadataBy
+    {
+        ObjectType,
+        EntityName
+    }
 }

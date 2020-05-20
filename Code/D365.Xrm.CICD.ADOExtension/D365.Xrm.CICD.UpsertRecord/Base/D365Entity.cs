@@ -68,12 +68,12 @@ namespace D365.Xrm.CICD.UpsertRecord
             }
             catch (Exception ex)
             {
-                throw new Exception("Error occurred while parsing the name value json. Please refer to further documentation at 'https://github.com/vikasrajan82/D365ADOReleaseAutomation/blob/master/README.md'");
+                throw new Exception($"Error occurred while parsing the name value json: {ex.Message}");
             }
 
-            if(this._entityAttributes.Count == 0)
+            if (this._entityAttributes.Count == 0)
             {
-                throw new Exception("There are no attributes to be updated. Please refer to further documentation at 'https://github.com/vikasrajan82/D365ADOReleaseAutomation/blob/master/README.md'");
+                throw new Exception("There are no attributes to be updated.");
             }
         }
 

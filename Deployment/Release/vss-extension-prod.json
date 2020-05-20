@@ -1,0 +1,165 @@
+{
+  "manifestVersion": 1,
+  "id": "d365-buildreleasetask",
+  "name": "D365 Automation Tools",
+  "version": "1.0.15",
+  "publisher": "vikas-rajan",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "Tasks for automating build and release related activities for Dynamics 365 CE",
+  "categories": [
+    "Azure Pipelines"
+  ],
+  "tags": [
+    "Build \u0026 Release Task",
+    "Dynamics 365 CE",
+    "Dynamics CRM",
+    "PowerApps",
+    "MSCRM",
+    "Power Platform"
+  ],
+  "content": {
+    "details": {
+      "path": "overview.md"
+    }
+  },
+  "galleryFlags": [
+    "Public",
+    "Preview"
+  ],
+  "branding": {
+    "color": "rgb(240,240,225)",
+    "theme": "light"
+  },
+  "icons": {
+    "default": "ExtensionIcon.png"
+  },
+  "files": [
+    {
+      "path": "Tasks/D365_AccessTeamTemplates"
+    },
+    {
+      "path": "Tasks/D365_EnableAccessTeam"
+    },
+    {
+      "path": "Tasks/D365_ExportDocumentTemplates"
+    },
+    {
+      "path": "Tasks/D365_ImportDataByCM"
+    },
+    {
+      "path": "Tasks/D365_ImportDocumentTemplates"
+    },
+    {
+      "path": "Tasks/D365_ImportSolutionByConfig"
+    },
+    {
+      "path": "Tasks/D365_RetrieveAccessTeamTemplates"
+    },
+    {
+      "path": "Tasks/D365_UpdatePluginConfiguration"
+    },
+    {
+      "path": "Tasks/D365_UpsertEntityRecord"
+    },
+    {
+      "path": "xmlformat.md",
+      "addressable": true
+    }
+  ],
+  "contributions": [
+    {
+      "id": "D365_AccessTeamTemplates",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Tasks/D365_AccessTeamTemplates"
+      }
+    },
+    {
+      "id": "D365_EnableAccessTeam",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Tasks/D365_EnableAccessTeam"
+      }
+    },
+    {
+      "id": "D365_ExportDocumentTemplates",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Tasks/D365_ExportDocumentTemplates"
+      }
+    },
+    {
+      "id": "D365_ImportDataByCM",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Tasks/D365_ImportDataByCM"
+      }
+    },
+    {
+      "id": "D365_ImportDocumentTemplates",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Tasks/D365_ImportDocumentTemplates"
+      }
+    },
+    {
+      "id": "D365_ImportSolutionByConfig",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Tasks/D365_ImportSolutionByConfig"
+      }
+    },
+    {
+      "id": "D365_RetrieveAccessTeamTemplates",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Tasks/D365_RetrieveAccessTeamTemplates"
+      }
+    },
+    {
+      "id": "D365_UpdatePluginConfiguration",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Tasks/D365_UpdatePluginConfiguration"
+      }
+    },
+    {
+      "id": "D365_UpsertEntityRecord",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Tasks/D365_UpsertEntityRecord"
+      }
+    }
+  ]
+}

@@ -86,8 +86,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="D365AccessTeamTemplate.cs" />
+    <Compile Include="Base\D365AccessTeamTemplate.cs" />
+    <Compile Include="Base\D365DocumentTemplate.cs" />
     <Compile Include="D365RetrieveAccessTeams.cs" />
+    <Compile Include="D365RetrieveDocumentTemplates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

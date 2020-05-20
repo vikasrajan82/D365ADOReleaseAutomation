@@ -119,13 +119,16 @@ namespace D365.Xrm.CICD.DataImport
                 {
                     ps.AddParameter("EnabledBatchMode")
                       .AddParameter("BatchSize", this._batchSize);
+
+                    this.MessageQueue($"Batch Size set to {this._batchSize}", LogType.Trace);
                 }
 
                 if (this._concurrentThreads > 0)
                 {
                     ps.AddParameter("ConcurrentThreads", this._concurrentThreads);
+
+                    this.MessageQueue($"Concurrent Thread set to {this._concurrentThreads}", LogType.Trace);
                 }
-                ////.AddParameter("LogWriteDirectory", @"C:\Program Files\WindowsPowerShell\Modules\Microsoft.Xrm.Tooling.ConfigurationMigration\1.0.0.26");
 
                 ps.Streams.Progress.DataAdded += Progress_DataAdded;
                 ps.Streams.Error.DataAdded += Error_DataAdded;
@@ -133,14 +136,6 @@ namespace D365.Xrm.CICD.DataImport
                 ps.Streams.Warning.DataAdded += Warning_DataAdded;
 
                 ps.Invoke();
-
-                //if (ps.Streams.Error.Count > 0)
-                //{
-                //    foreach (ErrorRecord error in ps.Streams.Error)
-                //    {
-                //        //this.MessageQueue(error.ToString(), LogType.Warning, true);
-                //    }
-                //}
             }
         }
 

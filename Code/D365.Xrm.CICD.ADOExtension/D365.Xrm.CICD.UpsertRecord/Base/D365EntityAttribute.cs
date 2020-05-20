@@ -83,6 +83,7 @@ namespace D365.Xrm.CICD.UpsertRecord
             {
                 case AttributeTypeCode.BigInt:
                     return Convert.ToInt64(attributeValue);
+                case AttributeTypeCode.EntityName:
                 case AttributeTypeCode.String:
                 case AttributeTypeCode.Memo:
                     return Convert.ToString(attributeValue);
@@ -124,6 +125,7 @@ namespace D365.Xrm.CICD.UpsertRecord
             {
                 case AttributeTypeCode.BigInt:
                     return Convert.ToInt64(this._retrievedAttributeValue) != Convert.ToInt64(this._newAttributeValue);
+                case AttributeTypeCode.EntityName:
                 case AttributeTypeCode.String:
                 case AttributeTypeCode.Memo:
                     return this._retrievedAttributeValue.ToString() != this._newAttributeValue.ToString();

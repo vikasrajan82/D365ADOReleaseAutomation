@@ -2,7 +2,7 @@
     "manifestVersion":  1,
     "id":  "d365-buildreleasetask",
     "name":  "D365 Automation Tools",
-    "version":  "0.0.214",
+    "version":  "0.0.247",
     "publisher":  "VikasRajan",
     "targets":  [
                     {
@@ -13,11 +13,14 @@
     "categories":  [
                        "Azure Pipelines"
                    ],
-    "tags":  [
-                 "Build \u0026 Release Task",
-                 "Dynamics 365 CE",
-                 "Dynamics CRM"
-             ],
+  "tags": [
+    "Build \u0026 Release Task",
+    "Dynamics 365 CE",
+    "Dynamics CRM",
+    "PowerApps",
+    "MSCRM",
+    "Power Platform"
+  ],
     "content":  {
                     "details":  {
                                     "path":  "overview.md"
@@ -42,7 +45,13 @@
                       "path":  "Tasks/D365_EnableAccessTeam"
                   },
                   {
+                      "path":  "Tasks/D365_ExportDocumentTemplates"
+                  },
+                  {
                       "path":  "Tasks/D365_ImportDataByCM"
+                  },
+                  {
+                      "path":  "Tasks/D365_ImportDocumentTemplates"
                   },
                   {
                       "path":  "Tasks/D365_ImportSolutionByConfig"
@@ -83,6 +92,16 @@
                                              }
                           },
                           {
+                              "id":  "D365_ExportDocumentTemplates",
+                              "type":  "ms.vss-distributed-task.task",
+                              "targets":  [
+                                              "ms.vss-distributed-task.tasks"
+                                          ],
+                              "properties":  {
+                                                 "name":  "Tasks/D365_ExportDocumentTemplates"
+                                             }
+                          },
+                          {
                               "id":  "D365_ImportDataByCM",
                               "type":  "ms.vss-distributed-task.task",
                               "targets":  [
@@ -90,6 +109,16 @@
                                           ],
                               "properties":  {
                                                  "name":  "Tasks/D365_ImportDataByCM"
+                                             }
+                          },
+                          {
+                              "id":  "D365_ImportDocumentTemplates",
+                              "type":  "ms.vss-distributed-task.task",
+                              "targets":  [
+                                              "ms.vss-distributed-task.tasks"
+                                          ],
+                              "properties":  {
+                                                 "name":  "Tasks/D365_ImportDocumentTemplates"
                                              }
                           },
                           {

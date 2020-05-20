@@ -2,14 +2,14 @@
     "id":  "90a11822-99aa-4809-a221-c546e877daa7",
     "name":  "D365_RetrieveAccessTeamTemplates",
     "friendlyName":  "Export Access Team Templates",
-    "description":  "Retrieves all the access team templates and writes to the artifact directory",
+    "description":  "Exports all the access team templates and writes to the output json file",
     "helpMarkDown":  "",
     "category":  "Build",
     "author":  "Vikas Rajan",
     "version":  {
                     "Major":  0,
                     "Minor":  1,
-                    "Patch":  6
+                    "Patch":  40
                 },
     "visibility":  [
                        "Build",
@@ -36,7 +36,7 @@
                ],
     "execution":  {
                       "PowerShell3":  {
-                                          "target":  "RetrieveAccessTeamTemplates.ps1"
+                                          "target":  "ExportAccessTeamTemplates.ps1"
                                       }
                   }
 }

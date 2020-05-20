@@ -22,7 +22,7 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
    Copy-Item "$ReleaseDir\Docs\xmlformat.md" $DeploymentDir -Force -Recurse
 
    # Updating the VSS Extension file with the created tasks
-   $vssExtensionMetadata = Get-Content -Raw -Path "$ReleaseDir\vss-extension.json" | ConvertFrom-Json
+   $vssExtensionMetadata = Get-Content -Raw -Path "$ReleaseDir\vss-extension-prod.json" | ConvertFrom-Json
    $vssExtensionMetadata.files = @()
    $vssExtensionMetadata.contributions = @()
 
@@ -31,12 +31,14 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
    foreach($taskFolder in $taskFolders)
     {
         # Incrementing the patch in Task.json file
-        $taskJson = Get-Content -Raw -Path "$ReleaseDir\Tasks\$taskFolder\task.json" | ConvertFrom-Json
+        $taskJson = Get-Content -Raw -Path "$ReleaseDir\Tasks\$taskFolder\task-prod.json" | ConvertFrom-Json
         $taskJson.version.Patch = $taskJson.version.Patch + 1
-        $taskJson | ConvertTo-Json -depth 100 | Set-Content "$ReleaseDir\Tasks\$taskFolder\task.json"
-        Copy-Item "$ReleaseDir\Tasks\$taskFolder\task.json" "$DeploymentDir\Tasks\$taskFolder" -Force -Recurse
+        $taskJson | ConvertTo-Json -depth 100 | Set-Content "$ReleaseDir\Tasks\$taskFolder\task-prod.json"
+        Copy-Item "$ReleaseDir\Tasks\$taskFolder\task-prod.json" "$DeploymentDir\Tasks\$taskFolder" -Force -Recurse
 
-        Remove-Item "$DeploymentDir\Tasks\$taskFolder\task-prod.json"
+        Remove-Item "$DeploymentDir\Tasks\$taskFolder\task.json"
+
+        Rename-Item -Path "$DeploymentDir\Tasks\$taskFolder\task-prod.json" -NewName "task.json"
 
         # Copying the bin folder
          Switch ($taskFolder)
@@ -76,7 +78,7 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
                 Copy-Item "$ReleaseDir\..\..\Code\D365.Xrm.CICD.ADOExtension\D365.Xrm.CICD.UpsertRecord\bin\Debug" "$DeploymentDir\Tasks\$taskFolder\bin" -Force -Recurse
                 break;
             }
-            "D365_RetrieveAccessTeamTemplates"
+             "D365_RetrieveAccessTeamTemplates"
             { 
                 Copy-Item "$ReleaseDir\..\..\Code\D365.Xrm.CICD.ADOExtension\D365.Xrm.CICD.RetrieveRecord\bin\Debug" "$DeploymentDir\Tasks\$taskFolder\bin" -Force -Recurse
                 break;
@@ -104,14 +106,14 @@ if (Test-Path -Path $DeploymentDir -PathType Container)
     $vssExtensionMetadata.files +=  @('{"path":"xmlformat.md", "addressable":true }' |  ConvertFrom-Json)
 
     # Writing the content to extension file
-    $vssExtensionMetadata | ConvertTo-Json -depth 100 | Set-Content "$ReleaseDir\vss-extension.json"
-    Copy-Item "$ReleaseDir\vss-extension.json" $DeploymentDir -Force -Recurse
-
+    $vssExtensionMetadata | ConvertTo-Json -depth 100 | Set-Content "$ReleaseDir\vss-extension-prod.json"
+    Copy-Item "$ReleaseDir\vss-extension-prod.json" "$DeploymentDir\vss-extension.json" -Force -Recurse
+    
     Set-Location $DeploymentDir
 
     tfx extension create --manifest-globs vss-extension.json --rev-version
 
     Set-Location ..
 
-    Copy-Item "$DeploymentDir\vss-extension.json" $ReleaseDir -Force -Recurse
+    Copy-Item "$DeploymentDir\vss-extension.json" "$ReleaseDir\vss-extension-prod.json" -Force -Recurse
 }

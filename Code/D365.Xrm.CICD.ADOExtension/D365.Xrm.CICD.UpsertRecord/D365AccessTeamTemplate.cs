@@ -20,8 +20,7 @@ namespace D365.Xrm.CICD.UpsertRecord
 
         private const string TEAM_TEMPLATE_ENTITY_NAME = "teamtemplate";
 
-        public D365AccessTeamTemplate(
-                    string connectionString)
+        public D365AccessTeamTemplate(string connectionString)
         {
             this._crmServiceClient = new CrmServiceClient(connectionString);
         }
@@ -35,6 +34,13 @@ namespace D365.Xrm.CICD.UpsertRecord
 
             try
             {
+                if (this._crmServiceClient.ConnectedOrgId == null || this._crmServiceClient.ConnectedOrgId == Guid.Empty)
+                {
+                    throw new Exception("Error occurred while connecting to CDS. Please check the connection string");
+                }
+
+                this.LogADOMessage($"Connected to: {this._crmServiceClient.ConnectedOrgFriendlyName}", LogType.Info);
+
                 JArray teamTemplates = (JArray)JsonConvert.DeserializeObject(File.ReadAllText(configFilePath));
                 foreach (JToken teamTemplate in teamTemplates)
                 {
@@ -88,7 +94,7 @@ namespace D365.Xrm.CICD.UpsertRecord
                 nameValueJson.Append($"{{name:\"description\",value:\"{this.ReplaceSpecialCharacters(teamTemplate["description"].ToString())}\"}},"); 
             }
 
-            int objectTypeCode = geEntityObjectTypeCode((string)teamTemplate["entityname"]);
+            int objectTypeCode = GeEntityObjectTypeCode((string)teamTemplate["entityname"], this._crmServiceClient);
 
             nameValueJson.Append($"{{name:\"teamtemplatename\",value:\"{this.ReplaceSpecialCharacters(teamTemplate["teamtemplatename"].ToString())}\"}},");
             nameValueJson.Append($"{{name:\"defaultaccessrightsmask\",value:\"{this.ReplaceSpecialCharacters(teamTemplate["defaultaccessrightsmask"].ToString())}\"}},");
@@ -107,37 +113,6 @@ namespace D365.Xrm.CICD.UpsertRecord
             }
 
             return strValue;
-        }
-
-        private int geEntityObjectTypeCode(string entityname)
-        {
-            MetadataFilterExpression entityFilter = new MetadataFilterExpression();
-            entityFilter.Conditions.Add(new MetadataConditionExpression("LogicalName", MetadataConditionOperator.Equals, entityname));
-
-            MetadataPropertiesExpression entityProperties = new MetadataPropertiesExpression("ObjectTypeCode")
-            {
-                AllProperties = false
-            };
-
-            EntityQueryExpression entityQueryExpression = new EntityQueryExpression()
-            {
-                Criteria = entityFilter,
-                Properties = entityProperties
-            };
-
-            RetrieveMetadataChangesRequest retrieveMetadataChangesRequest = new RetrieveMetadataChangesRequest()
-            {
-                Query = entityQueryExpression
-            };
-
-            RetrieveMetadataChangesResponse metadataResponse = (RetrieveMetadataChangesResponse)this._crmServiceClient.Execute(retrieveMetadataChangesRequest);
-
-            if (metadataResponse != null && metadataResponse.EntityMetadata.Count == 1)
-            {
-                return (int)metadataResponse.EntityMetadata[0].ObjectTypeCode;
-            }
-
-            return -1;
         }
     }
 }

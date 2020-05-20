@@ -1,5 +1,5 @@
 {
-    "id":  "435da3bc-501d-40a0-865e-011347ba84ff",
+    "id":  "36864cd0-d1eb-48d4-adf0-df2a867185ce",
     "name":  "D365_EnableAccessTeam",
     "friendlyName":  "Enable Access Team",
     "description":  "Enable Access Team on D365 Entity",
@@ -7,9 +7,9 @@
     "category":  "Deploy",
     "author":  "Vikas Rajan",
     "version":  {
-                    "Major":  0,
+                    "Major":  1,
                     "Minor":  1,
-                    "Patch":  1
+                    "Patch":  18
                 },
     "visibility":  [
                        "Build",
